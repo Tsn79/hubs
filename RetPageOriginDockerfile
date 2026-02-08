@@ -20,7 +20,7 @@ run mkdir /hubs/rawhubs && mv dist/pages /hubs/rawhubs && mv dist/assets /hubs/r
 from alpine/openssl as ssl
 run mkdir /ssl && openssl req -x509 -newkey rsa:2048 -sha256 -days 36500 -nodes -keyout /ssl/key -out /ssl/cert -subj '/CN=hubs'
 
-from nginx:alpine
+from nginx:1.29.5-alpine3.23
 run apk add bash
 run mkdir /ssl && mkdir -p /www/hubs && mkdir -p /www/hubs/pages && mkdir -p /www/hubs/assets
 copy --from=ssl /ssl /ssl
